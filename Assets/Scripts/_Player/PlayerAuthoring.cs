@@ -12,6 +12,7 @@ namespace TMG.LD53
             public override void Bake(PlayerAuthoring authoring)
             {
                 var playerEntity = GetEntity(TransformUsageFlags.Dynamic);
+                AddComponent<PlayerTag>(playerEntity);
                 AddComponent(playerEntity, new BaseMoveSpeed { Value = authoring.BaseMoveSpeed });
                 AddComponent<PlayerMoveInput>(playerEntity);
             }

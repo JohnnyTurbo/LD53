@@ -17,6 +17,11 @@ namespace TMG.LD53
         public void MovePlayer(float deltaTime)
         {
             _localTransform.ValueRW.Position.xz += PlayerMoveInput * BaseMoveSpeed * deltaTime;
+            if (math.lengthsq(PlayerMoveInput) > float.Epsilon)
+            {
+                var playerMove3 = new float3(PlayerMoveInput.x, 0f, PlayerMoveInput.y);
+                _localTransform.ValueRW.Rotation = quaternion.LookRotation(playerMove3, math.up());
+            }
         }
     }
 }
