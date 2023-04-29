@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseMoveSpeed: 2.5
-  BaseHitPoints: 0
+  BaseHitPoints: 10
 --- !u!114 &418393905
 MonoBehaviour:
   m_ObjectHideFlags: 0
