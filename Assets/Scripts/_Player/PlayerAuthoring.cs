@@ -18,6 +18,7 @@ namespace TMG.LD53
                 AddComponent<PlayerMoveInput>(playerEntity);
                 AddComponent(playerEntity, new BaseHitPoints { Value = authoring.BaseHitPoints });
                 AddComponent(playerEntity, new CurHitPoints { Value = authoring.BaseHitPoints });
+                AddBuffer<DamageBufferElement>(playerEntity);
             }
         }
     }

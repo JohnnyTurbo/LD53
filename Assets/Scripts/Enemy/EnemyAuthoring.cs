@@ -9,7 +9,9 @@ namespace TMG.LD53
         public int BaseHitPoints;
         public MoneyType MoneyType;
         public float DropRate;
-
+        public int AttackDamage;
+        public float AttackInterval;
+        
         public class BaseMoveSpeedBaker : Baker<EnemyAuthoring>
         {
             public override void Bake(EnemyAuthoring authoring)
@@ -24,6 +26,14 @@ namespace TMG.LD53
                     MoneyType = authoring.MoneyType, 
                     DropRate = authoring.DropRate
                 });
+                AddComponent(enemyEntity, new EnemyAttack
+                {
+                    Strength = authoring.AttackDamage,
+                    Interval = authoring.AttackInterval,
+                    Timer = 0f
+                });
+                AddComponent<EnemyAttackTarget>(enemyEntity);
+                SetComponentEnabled<EnemyAttackTarget>(enemyEntity, false);
             }
         }
     }
