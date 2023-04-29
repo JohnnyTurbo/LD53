@@ -3,7 +3,9 @@ using Unity.Entities;
 
 namespace TMG.LD53
 {
-    public partial struct DestroyOnCollisionsSystem : ISystem
+    [UpdateInGroup(typeof(SimulationSystemGroup))]
+    [UpdateAfter(typeof(CapabilitySystemGroup))]
+    public partial struct ApplyDamageSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
@@ -14,7 +16,7 @@ namespace TMG.LD53
         public void OnUpdate(ref SystemState state)
         {
             var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
-            new DestroyOnCollisionsJob
+            new ApplyDamageJob
             {
                 ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter()
             }.ScheduleParallel();
@@ -22,24 +24,26 @@ namespace TMG.LD53
     }
 
     [BurstCompile]
-    public partial struct DestroyOnCollisionsJob : IJobEntity
+    public partial struct ApplyDamageJob : IJobEntity
     {
         public EntityCommandBuffer.ParallelWriter ECB;
         
         [BurstCompile]
-        private void Execute(Entity entity, ref DestroyOnCollisions collisions, 
-            in DynamicBuffer<HitBufferElement> hitBuffer, [ChunkIndexInQuery]int sortKey)
+        private void Execute(Entity entity, ref CurHitPoints curHitPoints, ref DynamicBuffer<DamageBufferElement> damageBuffer,
+            [ChunkIndexInQuery] int sortKey)
         {
-            foreach (var hit in hitBuffer)
+            var totalDamage = 0;
+            foreach (var damage in damageBuffer)
             {
-                if (hit.IsHandled) continue;
-                collisions.Value--;
+                totalDamage += damage.Value;
             }
 
-            if (collisions.Value <= 0)
-            {
-                ECB.AddComponent<DestroyEntityTag>(sortKey, entity);
-            }
+            curHitPoints.Value -= totalDamage;
+            damageBuffer.Clear();
+
+            if (curHitPoints.Value > 0) return;
+            ECB.AddComponent<DestroyEntityTag>(sortKey, entity);
         }
     }
+
 }

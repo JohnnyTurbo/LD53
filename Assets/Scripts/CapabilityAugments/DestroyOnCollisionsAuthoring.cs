@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace TMG.LD53
 {
+    [RequireComponent(typeof(CollisionDetectorAuthoring))]
     public class DestroyOnCollisionsAuthoring : MonoBehaviour
     {
         public int CollisionCount;

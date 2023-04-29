@@ -3,7 +3,7 @@ using Unity.Entities;
 
 namespace TMG.LD53
 {
-    public partial struct DestroyOnCollisionsSystem : ISystem
+    public partial struct DestroyOnTimerSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
@@ -13,30 +13,29 @@ namespace TMG.LD53
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            var deltaTime = SystemAPI.Time.DeltaTime;
             var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
-            new DestroyOnCollisionsJob
+
+            new DestroyOnTimerJob
             {
+                DeltaTime = deltaTime,
                 ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter()
             }.ScheduleParallel();
         }
     }
 
+    
     [BurstCompile]
-    public partial struct DestroyOnCollisionsJob : IJobEntity
+    public partial struct DestroyOnTimerJob : IJobEntity
     {
+        public float DeltaTime;
         public EntityCommandBuffer.ParallelWriter ECB;
         
         [BurstCompile]
-        private void Execute(Entity entity, ref DestroyOnCollisions collisions, 
-            in DynamicBuffer<HitBufferElement> hitBuffer, [ChunkIndexInQuery]int sortKey)
+        private void Execute(Entity entity, ref DestroyOnTimer timer, [ChunkIndexInQuery]int sortKey)
         {
-            foreach (var hit in hitBuffer)
-            {
-                if (hit.IsHandled) continue;
-                collisions.Value--;
-            }
-
-            if (collisions.Value <= 0)
+            timer.Value -= DeltaTime;
+            if (timer.Value <= 0f)
             {
                 ECB.AddComponent<DestroyEntityTag>(sortKey, entity);
             }
