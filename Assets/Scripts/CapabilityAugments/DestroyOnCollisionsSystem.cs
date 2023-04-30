@@ -3,6 +3,7 @@ using Unity.Entities;
 
 namespace TMG.LD53
 {
+    [UpdateInGroup(typeof(CapabilitySystemGroup))]
     public partial struct DestroyOnCollisionsSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -27,16 +28,16 @@ namespace TMG.LD53
         public EntityCommandBuffer.ParallelWriter ECB;
         
         [BurstCompile]
-        private void Execute(Entity entity, ref DestroyOnCollisions collisions, 
+        private void Execute(Entity entity, ref DestroyOnTriggers triggers, 
             in DynamicBuffer<HitBufferElement> hitBuffer, [ChunkIndexInQuery]int sortKey)
         {
             foreach (var hit in hitBuffer)
             {
                 if (hit.IsHandled) continue;
-                collisions.Value--;
+                triggers.Value--;
             }
 
-            if (collisions.Value <= 0)
+            if (triggers.Value <= 0)
             {
                 ECB.AddComponent<DestroyEntityTag>(sortKey, entity);
             }

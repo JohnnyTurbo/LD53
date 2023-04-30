@@ -9,9 +9,7 @@ namespace TMG.LD53
         {
             if (!CheckPrefabContainer()) return;
             base.UpgradeWeapon();
-
-            Debug.Log($"Upgrading cheese whip to level {Level}");
-
+            
             switch (Level)
             {
                 case 1:
@@ -21,7 +19,7 @@ namespace TMG.LD53
                         CooldownTime = 2.5f,
                         Timer = 0f
                     });
-                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, true);
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
                     EntityManager.AddComponentData(WeaponEntity, new CheeseWhipProperties
                     {
                         BaseHitPoints = 5,

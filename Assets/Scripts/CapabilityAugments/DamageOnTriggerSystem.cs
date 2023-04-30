@@ -5,7 +5,7 @@ using Unity.Entities;
 namespace TMG.LD53
 {
     [UpdateInGroup(typeof(CapabilitySystemGroup))]
-    public partial struct DamageOnCollisionSystem : ISystem
+    public partial struct DamageOnTriggerSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
@@ -16,7 +16,7 @@ namespace TMG.LD53
         public void OnUpdate(ref SystemState state)
         {
             var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
-            new DamageOnCollisionJob
+            new DamageOnTriggerJob
             {
                 ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter(),
                 CanTakeDamageLookup = SystemAPI.GetComponentLookup<CanTakeDamageTag>(true)
@@ -24,22 +24,22 @@ namespace TMG.LD53
         }
         
     }
-
+    
     [BurstCompile]
-    public partial struct DamageOnCollisionJob : IJobEntity
+    public partial struct DamageOnTriggerJob : IJobEntity
     {
         public EntityCommandBuffer.ParallelWriter ECB;
         [ReadOnly] public ComponentLookup<CanTakeDamageTag> CanTakeDamageLookup;
 
         [BurstCompile]
-        private void Execute(in DynamicBuffer<HitBufferElement> hitBuffer, in DamageOnCollision damageOnCollision,
+        private void Execute(in DynamicBuffer<HitBufferElement> hitBuffer, in DamageOnTrigger damageOnTrigger,
             [ChunkIndexInQuery] int sortKey)
         {
             foreach (var hit in hitBuffer)
             {
                 if(hit.IsHandled) continue;
                 if (!CanTakeDamageLookup.HasComponent(hit.HitEntity)) continue;
-                ECB.AppendToBuffer(sortKey, hit.HitEntity, new DamageBufferElement { Value = damageOnCollision.Value });
+                ECB.AppendToBuffer(sortKey, hit.HitEntity, new DamageBufferElement { Value = damageOnTrigger.Value });
             }
         }
     }

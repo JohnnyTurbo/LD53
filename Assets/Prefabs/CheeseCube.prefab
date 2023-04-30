@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 3278109005663435284}
   - component: {fileID: 1482607310233847973}
   - component: {fileID: 348076288102640729}
+  - component: {fileID: -6792083307651388240}
+  - component: {fileID: 716997815681990117}
+  - component: {fileID: -4966714450477858351}
   m_Layer: 0
   m_Name: CheeseCube
   m_TagString: Untagged
@@ -131,7 +134,7 @@ MonoBehaviour:
   m_ForceUnique: 0
   m_Material:
     m_SupportsTemplate: 1
-    m_Template: {fileID: 0}
+    m_Template: {fileID: 11400000, guid: 587eb1cd1db16a6468ce633752ab363a, type: 2}
     m_CollisionResponse:
       m_Override: 0
       m_Value: 3
@@ -241,3 +244,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeToLive: 0.15
+--- !u!114 &-6792083307651388240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6459806003937522061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e7290b8d494040994043c84b8a35e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &716997815681990117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6459806003937522061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a58113bd19c4acd84ce99c23809d09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4966714450477858351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6459806003937522061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98f47fcd98d426dafd4a892b7ab0ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageValue: 100

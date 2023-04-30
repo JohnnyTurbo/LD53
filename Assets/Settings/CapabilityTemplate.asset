@@ -17,7 +17,7 @@ MonoBehaviour:
     m_Template: {fileID: 0}
     m_CollisionResponse:
       m_Override: 1
-      m_Value: 1
+      m_Value: 3
     m_Friction:
       m_Override: 1
       m_Value:
