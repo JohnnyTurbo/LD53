@@ -1,7 +1,5 @@
-﻿using System;
-using Unity.Entities;
+﻿using Unity.Entities;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace TMG.LD53
 {
@@ -16,7 +14,6 @@ namespace TMG.LD53
         private EntityQuery _prefabEntityQuery;
         
         [SerializeField] private UpgradeElement _upgradeElement;
-        [SerializeField] private UnityEvent _onUpgradeEvent;
 
         private void OnEnable()
         {

@@ -5,13 +5,12 @@ using UnityEngine;
 namespace TMG.LD53
 {
     [RequireComponent(typeof(PhysicsShapeAuthoring))]
-    [RequireComponent(typeof(PhysicsBodyAuthoring))]
     [RequireComponent(typeof(CapabilityTagAuthoring))]
-    public class CollisionDetectorAuthoring : MonoBehaviour
+    public class TriggerDetectorAuthoring : MonoBehaviour
     {
-        public class CollisionDetectorBaker : Baker<CollisionDetectorAuthoring>
+        public class TriggerDetectorBaker : Baker<TriggerDetectorAuthoring>
         {
-            public override void Bake(CollisionDetectorAuthoring authoring)
+            public override void Bake(TriggerDetectorAuthoring authoring)
             {
                 var capabilityEntity = GetEntity(TransformUsageFlags.Dynamic);
                 AddBuffer<HitBufferElement>(capabilityEntity);

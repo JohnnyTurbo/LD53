@@ -7,7 +7,7 @@ namespace TMG.LD53
     public struct HitBufferElement : IBufferElementData
     {
         public Entity HitEntity;
-        public float3 HitPosition;
+        public float3 HitDirection;
         public bool IsHandled;
     }
 }
