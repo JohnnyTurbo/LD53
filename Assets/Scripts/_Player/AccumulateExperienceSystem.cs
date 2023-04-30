@@ -1,4 +1,5 @@
-﻿using Unity.Burst;
+﻿using System;
+using Unity.Burst;
 using Unity.Entities;
 
 namespace TMG.LD53
@@ -6,16 +7,22 @@ namespace TMG.LD53
     [BurstCompile]
     [UpdateInGroup(typeof(SimulationSystemGroup), OrderLast = true)]
     [UpdateAfter(typeof(EndSimulationEntityCommandBufferSystem))]
-    public partial struct AccumulateExperienceSystem : ISystem
+    public partial class AccumulateExperienceSystem : SystemBase
     {
+        public Action OnLevelUp;
+        
         [BurstCompile]
-        public void OnUpdate(ref SystemState state)
+        protected override void OnUpdate()
         {
             foreach (var experienceAspect in SystemAPI.Query<PlayerExperienceAspect>())
             {
-                experienceAspect.AccumulateExperience();
+                if (!experienceAspect.AccumulateExperience()) continue;
+
+                OnLevelUp?.Invoke();
+                
+                var simulationSystemGroup = World.GetExistingSystemManaged<SimulationSystemGroup>();
+                simulationSystemGroup.Enabled = false;
             }
         }
-        
     }
 }

@@ -24,9 +24,9 @@ namespace TMG.LD53
 
         private bool ShouldLevelUp => CurrentPlayerExperience >= CurrentLevelExperience;
         
-        public void AccumulateExperience()
+        public bool AccumulateExperience()
         {
-            if (_experienceBuffer.IsEmpty) return;
+            if (_experienceBuffer.IsEmpty) return false;
             
             var curExperience = 0;
             foreach (var experience in _experienceBuffer)
@@ -36,11 +36,12 @@ namespace TMG.LD53
             _experienceBuffer.Clear();
             CurrentPlayerExperience += curExperience;
 
-            if (ShouldLevelUp)
-            {
-                CurrentPlayerExperience -= CurrentLevelExperience;
-                CurrentLevelExperience += 1;
-            }
+            if (!ShouldLevelUp) return false;
+            
+            CurrentPlayerExperience -= CurrentLevelExperience;
+            CurrentLevelExperience += 1;
+            return true;
+
         }
     }
 }

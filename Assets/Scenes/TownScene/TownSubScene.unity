@@ -1483,7 +1483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 6889323322426519656, guid: c28a3e767a3f261459f2a90f0441120e,
     type: 3}
-  CooldownTime: 2
+  CooldownTime: 1.75
 --- !u!114 &418393906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3386,6 +3386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1340930682}
   - component: {fileID: 1340930681}
+  - component: {fileID: 1340930683}
   m_Layer: 0
   m_Name: PrefabContainer
   m_TagString: Untagged
@@ -3426,6 +3427,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1340930683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340930680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b391fca1bbf840798bd7f8bf90294f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CheeseWhipPrefab: {fileID: 6459806003937522061, guid: da43555714718304eb110e10a2da4603,
+    type: 3}
 --- !u!1 &1591040572
 GameObject:
   m_ObjectHideFlags: 0
