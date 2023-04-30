@@ -7,18 +7,27 @@ namespace TMG.LD53
     public class PlayerUIController : MonoBehaviour
     {
         [SerializeField] private Slider _playerHealthSlider;
-
+        [SerializeField] private Slider _playerExperienceSlider;
+        
         private void OnEnable()
         {
-            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<UpdatePlayerUISystem>().OnUpdateHealth +=
-                UpdateHealth;
+            var updatePlayerUISystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<UpdatePlayerUISystem>();
+            updatePlayerUISystem.OnUpdateHealth += UpdateHealth;
+            updatePlayerUISystem.OnUpdateExperience += UpdateExperience;
+        }
+
+        private void UpdateExperience(int playerExperience, int levelExperience)
+        {
+            _playerExperienceSlider.maxValue = levelExperience;
+            _playerExperienceSlider.value = playerExperience;
         }
 
         private void OnDisable()
         {
             if (World.DefaultGameObjectInjectionWorld == null) return;
-            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<UpdatePlayerUISystem>().OnUpdateHealth -=
-                UpdateHealth;
+            var updatePlayerUISystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<UpdatePlayerUISystem>();
+            updatePlayerUISystem.OnUpdateHealth -= UpdateHealth;
+            updatePlayerUISystem.OnUpdateExperience -= UpdateExperience;
         }
 
         private void UpdateHealth(int curHealth, int maxHealth)

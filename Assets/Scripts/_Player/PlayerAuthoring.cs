@@ -19,6 +19,9 @@ namespace TMG.LD53
                 AddComponent(playerEntity, new BaseHitPoints { Value = authoring.BaseHitPoints });
                 AddComponent(playerEntity, new CurHitPoints { Value = authoring.BaseHitPoints });
                 AddBuffer<DamageBufferElement>(playerEntity);
+                AddBuffer<ExperienceBufferElement>(playerEntity);
+                AddComponent<CurrentPlayerExperience>(playerEntity);
+                AddComponent(playerEntity, new CurrentLevelExperience { Value = 4 });
             }
         }
     }
