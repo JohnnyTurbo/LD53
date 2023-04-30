@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -6792083307651388240}
   - component: {fileID: 716997815681990117}
   - component: {fileID: -4966714450477858351}
+  - component: {fileID: 52551319809890252}
   m_Layer: 0
   m_Name: CheeseCube
   m_TagString: Untagged
@@ -280,4 +281,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d98f47fcd98d426dafd4a892b7ab0ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageValue: 100
+  DamageValue: 1
+--- !u!114 &52551319809890252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6459806003937522061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f792bcf04f2148be853e06383227ddfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KnockBackStrength: 3

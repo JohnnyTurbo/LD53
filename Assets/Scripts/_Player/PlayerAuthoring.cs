@@ -1,4 +1,5 @@
 ﻿using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace TMG.LD53
@@ -15,7 +16,11 @@ namespace TMG.LD53
                 var playerEntity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent<PlayerTag>(playerEntity);
                 AddComponent(playerEntity, new BaseMoveSpeed { Value = authoring.BaseMoveSpeed });
-                AddComponent<PlayerMoveInput>(playerEntity);
+                AddComponent(playerEntity, new PlayerMoveInput
+                {
+                    Value = float2.zero,
+                    LastHorizontal = 1f
+                });
                 AddComponent(playerEntity, new BaseHitPoints { Value = authoring.BaseHitPoints });
                 AddComponent(playerEntity, new CurHitPoints { Value = authoring.BaseHitPoints });
                 AddBuffer<DamageBufferElement>(playerEntity);

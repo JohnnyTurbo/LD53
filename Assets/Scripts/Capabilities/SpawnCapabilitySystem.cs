@@ -5,7 +5,7 @@ using Unity.Transforms;
 
 namespace TMG.LD53
 {
-    [BurstCompile]
+    [UpdateInGroup(typeof(CapabilitySystemGroup), OrderFirst = true)]
     public partial struct SpawnCapabilitySystem : ISystem
     {
         [BurstCompile]
@@ -38,7 +38,9 @@ namespace TMG.LD53
                     var newCap = state.EntityManager.Instantiate(capabilityPrefabs.CheeseWhipEntity);
                     var player = SystemAPI.GetSingletonEntity<PlayerTag>();
                     var playerPos = SystemAPI.GetComponent<LocalTransform>(player).Position;
-                    var rot = quaternion.Euler(0f, math.PI * (props.NumberSpawned % 2), 0f);
+                    var playerFacingDirection = SystemAPI.GetComponent<PlayerMoveInput>(player).LastHorizontal;
+                    var mod = playerFacingDirection < 0 ? 1 : 0;
+                    var rot = quaternion.Euler(0f, math.PI * ((props.NumberSpawned + mod) % 2), 0f);
                     var whipPos = LocalTransform.FromPositionRotation(playerPos, rot);
                     state.EntityManager.SetComponentData(newCap, whipPos);
 

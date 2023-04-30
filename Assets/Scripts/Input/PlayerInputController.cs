@@ -1,5 +1,6 @@
 ﻿using System;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace TMG.LD53
@@ -38,7 +39,20 @@ namespace TMG.LD53
         {
             if(!CheckPlayerEntity()) return;
             var curInput = _deliveryGuyInput.GameplayMap.PlayerMovement.ReadValue<Vector2>();
-            _entityManager.SetComponentData(_playerEntity, new PlayerMoveInput { Value = curInput });
+            float lastHorizontalInput;
+            if (math.abs(curInput.x) <= float.Epsilon)
+            {
+                lastHorizontalInput = math.sign(_entityManager.GetComponentData<PlayerMoveInput>(_playerEntity).LastHorizontal);
+            }
+            else
+            {
+                lastHorizontalInput = math.sign(curInput.x);
+            }
+            _entityManager.SetComponentData(_playerEntity, new PlayerMoveInput
+            {
+                Value = curInput,
+                LastHorizontal = lastHorizontalInput
+            });
         }
 
         private bool CheckPlayerEntity()
