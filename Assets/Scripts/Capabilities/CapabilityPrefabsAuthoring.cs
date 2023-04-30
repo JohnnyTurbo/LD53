@@ -7,7 +7,9 @@ namespace TMG.LD53
     public class CapabilityPrefabsAuthoring : MonoBehaviour
     {
         public GameObject CheeseWhipPrefab;
-
+        public GameObject SausageSlingshotPrefab;
+        public GameObject MarinaraMaelstromPrefab;
+        
         public class CapabilityPrefabsBaker : Baker<CapabilityPrefabsAuthoring>
         {
             public override void Bake(CapabilityPrefabsAuthoring authoring)
@@ -15,7 +17,9 @@ namespace TMG.LD53
                 var entity = GetEntity(TransformUsageFlags.None);
                 AddComponent(entity, new CapabilityPrefabs
                 {
-                    CheeseWhipEntity = GetEntity(authoring.CheeseWhipPrefab, TransformUsageFlags.None)
+                    CheeseWhipPrefab = GetEntity(authoring.CheeseWhipPrefab, TransformUsageFlags.Dynamic),
+                    SausageSlingshotPrefab = GetEntity(authoring.SausageSlingshotPrefab, TransformUsageFlags.Dynamic),
+                    MarinaraMaelstromPrefab = GetEntity(authoring.MarinaraMaelstromPrefab, TransformUsageFlags.Dynamic)
                 });
             }
         }

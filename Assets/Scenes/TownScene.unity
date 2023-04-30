@@ -2310,6 +2310,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1237492159}
   - component: {fileID: 1237492158}
+  - component: {fileID: 1237492160}
+  - component: {fileID: 1237492161}
   m_Layer: 0
   m_Name: UpgradeController
   m_TagString: Untagged
@@ -2330,9 +2332,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeElement: {fileID: 11400000, guid: 863ccbe9e3c2c364a8b40ac2e390bf00, type: 2}
-  _onUpgradeEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &1237492159
 Transform:
   m_ObjectHideFlags: 0
@@ -2348,6 +2347,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1237492160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237492157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d35b4555ec27445f9cf64af5958f047d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradeElement: {fileID: 11400000, guid: dedeb730e60755641be313911e366963, type: 2}
+--- !u!114 &1237492161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237492157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cae2be4888d4a90bb5ab7e6d15e79ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradeElement: {fileID: 11400000, guid: 3f128033340e882429d401c5def611b1, type: 2}
 --- !u!1 &1459228524
 GameObject:
   m_ObjectHideFlags: 3

@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2622f4078e954d88bcafd45f089eab8a, type: 3}
-  m_Name: WhipUpgradeElement
+  m_Name: MarinaraMaelstrom
   m_EditorClassIdentifier: 
-  Name: Cheese Whip
-  Icon: {fileID: 21300000, guid: 3494dc956dfd7174abc07060940a2848, type: 3}
+  Name: Marinara Maelstrom
+  Icon: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
   Descriptions:
-  - Increases base attack by 5. Fires a second whip. This is a long description that
-    can take up a lot of room and it looks good when I have it take up three lines
-    like that if I want to get real crazy with it. Why r u reading this?
+  - Fires a glob of marinara in a random direction dealing heavy damage
+  - Increase the size of the marinara glob
+  - Increase base stat, decrease cooldown
+  - Large glob of marinara, damage increase

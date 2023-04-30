@@ -3,25 +3,26 @@ using UnityEngine;
 
 namespace TMG.LD53
 {
-    public class CheeseWhipUpgrade : UpgradeListener
+    public class SausageSlingshotUpgrade : UpgradeListener
     {
         public override void UpgradeWeapon()
         {
             if (!CheckPrefabContainer()) return;
             base.UpgradeWeapon();
-            
+
             switch (Level)
             {
                 case 1:
                     WeaponEntity = EntityManager.CreateEntity(ComponentType.ReadOnly<PerformCapabilityTag>());
-                    EntityManager.SetName(WeaponEntity, "CheeseWhipProperties");
+                    EntityManager.SetName(WeaponEntity, "SausageSlingshotProperties");
+                    
                     EntityManager.AddComponentData(WeaponEntity, new CapabilityTimer
                     {
                         CooldownTime = 2.5f,
                         Timer = 0f
                     });
                     EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, true);
-                    EntityManager.AddComponentData(WeaponEntity, new CheeseWhipProperties
+                    EntityManager.AddComponentData(WeaponEntity, new SausageSlingshotProperties
                     {
                         BaseHitPoints = 5,
                         NumberToSpawn = 1,
@@ -29,6 +30,7 @@ namespace TMG.LD53
                         NumberSpawned = 0,
                         Timer = 0f
                     });
+                    
                     break;
                 
                 case 2:
@@ -38,7 +40,7 @@ namespace TMG.LD53
                         Timer = 0f
                     });
                     EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, true);
-                    EntityManager.SetComponentData(WeaponEntity, new CheeseWhipProperties
+                    EntityManager.SetComponentData(WeaponEntity, new SausageSlingshotProperties
                     {
                         BaseHitPoints = 10,
                         NumberToSpawn = 2,
@@ -49,11 +51,37 @@ namespace TMG.LD53
                     break;
                 
                 case 3:
-                    
+                    EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
+                    {
+                        CooldownTime = 2f,
+                        Timer = 0f
+                    });
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, true);
+                    EntityManager.SetComponentData(WeaponEntity, new SausageSlingshotProperties
+                    {
+                        BaseHitPoints = 10,
+                        NumberToSpawn = 3,
+                        TimeBetweenSpawns = 0.2f,
+                        NumberSpawned = 0,
+                        Timer = 0f
+                    });
                     break;
                 
                 case 4:
-                    
+                    EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
+                    {
+                        CooldownTime = 2f,
+                        Timer = 0f
+                    });
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, true);
+                    EntityManager.SetComponentData(WeaponEntity, new SausageSlingshotProperties
+                    {
+                        BaseHitPoints = 20,
+                        NumberToSpawn = 4,
+                        TimeBetweenSpawns = 0.2f,
+                        NumberSpawned = 0,
+                        Timer = 0f
+                    });
                     break;
                 
                 default:
