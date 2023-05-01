@@ -27,6 +27,7 @@ namespace TMG.LD53
                 AddBuffer<ExperienceBufferElement>(playerEntity);
                 AddComponent<CurrentPlayerExperience>(playerEntity);
                 AddComponent(playerEntity, new CurrentLevelExperience { Value = 3 });
+                AddComponent<PlayerRenderer>(playerEntity);
             }
         }
     }

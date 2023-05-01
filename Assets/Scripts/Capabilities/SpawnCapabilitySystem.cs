@@ -39,7 +39,7 @@ namespace TMG.LD53
                     var player = SystemAPI.GetSingletonEntity<PlayerTag>();
                     var playerPos = SystemAPI.GetComponent<LocalTransform>(player).Position;
                     var playerFacingDirection = SystemAPI.GetComponent<PlayerMoveInput>(player).LastHorizontal;
-                    var mod = playerFacingDirection < 0 ? 1 : 0;
+                    var mod = playerFacingDirection < 0 ? 0 : 1;
                     var rot = quaternion.Euler(0f, math.PI * ((props.NumberSpawned + mod) % 2), 0f);
                     var whipPos = LocalTransform.FromPositionRotation(playerPos, rot);
                     state.EntityManager.SetComponentData(newCap, whipPos);
@@ -88,30 +88,26 @@ namespace TMG.LD53
                 if (SystemAPI.HasComponent<MarinaraMaelstromProperties>(entity))
                 {
                     var props = SystemAPI.GetComponent<MarinaraMaelstromProperties>(entity);
-                    props.Timer -= deltaTime;
-                    SystemAPI.SetComponent(entity, props);
-                    if (props.Timer > 0f) continue;
+                    //props.Timer -= deltaTime;
+                    //SystemAPI.SetComponent(entity, props);
+                    //if (props.Timer > 0f) continue;
                     
-                    var newCap = state.EntityManager.Instantiate(capabilityPrefabs.MarinaraMaelstromPrefab);
-                    var player = SystemAPI.GetSingletonEntity<PlayerTag>();
-                    var playerPos = SystemAPI.GetComponent<LocalTransform>(player).Position;
                     var rot = SystemAPI.GetComponent<EntityRandom>(entity);
                     var randAngle = rot.Value.NextFloat(0, 2 * math.PI);
                     SystemAPI.SetComponent(entity, rot);
-                    var randRot = quaternion.Euler(0f, randAngle, 0f);
-                    var sausagePosition = LocalTransform.FromPositionRotation(playerPos, randRot);
-                    state.EntityManager.SetComponentData(newCap, sausagePosition);
-
-                    props.NumberSpawned++;
-                    if (props.NumberSpawned < props.NumberToSpawn)
+                    
+                    for (var i = 0; i < props.NumberToSpawn; i++)
                     {
-                        props.Timer = props.TimeBetweenSpawns;
-                        SystemAPI.SetComponent(entity, props);
-                        continue;
+                        var newCap = state.EntityManager.Instantiate(capabilityPrefabs.MarinaraMaelstromPrefab);
+                        var player = SystemAPI.GetSingletonEntity<PlayerTag>();
+                        var playerPos = SystemAPI.GetComponent<LocalTransform>(player).Position;
+                        var calcAngle = randAngle + i * props.SpreadAngle;
+                        var randRot = quaternion.Euler(0f, calcAngle, 0f);
+                        var sausagePosition = LocalTransform.FromPositionRotation(playerPos, randRot);
+                        state.EntityManager.SetComponentData(newCap, sausagePosition);
                     }
-                    props.Timer = 0f;
-                    props.NumberSpawned = 0;
-                    SystemAPI.SetComponent(entity, props);
+                    
+                    //SystemAPI.SetComponent(entity, props);
                     state.EntityManager.SetComponentEnabled<PerformCapabilityTag>(entity, false);
                 }
             }

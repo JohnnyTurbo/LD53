@@ -6,8 +6,6 @@ namespace TMG.LD53
     {
         public int NumberToSpawn;
         public int BaseHitPoints;
-        public float TimeBetweenSpawns;
-        public float Timer;
-        public int NumberSpawned;
+        public float SpreadAngle;
     }
 }

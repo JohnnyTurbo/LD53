@@ -7,7 +7,7 @@ namespace TMG.LD53
     {
         public override void UpgradeWeapon()
         {
-            if (!CheckPrefabContainer()) return;
+            // if (!CheckPrefabContainer()) return;
             base.UpgradeWeapon();
 
             switch (Level)
@@ -19,9 +19,9 @@ namespace TMG.LD53
                     EntityManager.AddComponentData(WeaponEntity, new CapabilityTimer
                     {
                         CooldownTime = 2.5f,
-                        Timer = 0f
+                        Timer = 0.15f
                     });
-                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, true);
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
                     EntityManager.AddComponentData(WeaponEntity, new SausageSlingshotProperties
                     {
                         BaseHitPoints = 5,
@@ -37,9 +37,9 @@ namespace TMG.LD53
                     EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
                     {
                         CooldownTime = 2f,
-                        Timer = 0f
+                        Timer = 0.15f
                     });
-                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, true);
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
                     EntityManager.SetComponentData(WeaponEntity, new SausageSlingshotProperties
                     {
                         BaseHitPoints = 10,
@@ -54,9 +54,9 @@ namespace TMG.LD53
                     EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
                     {
                         CooldownTime = 2f,
-                        Timer = 0f
+                        Timer = 0.15f
                     });
-                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, true);
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
                     EntityManager.SetComponentData(WeaponEntity, new SausageSlingshotProperties
                     {
                         BaseHitPoints = 10,
@@ -71,9 +71,9 @@ namespace TMG.LD53
                     EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
                     {
                         CooldownTime = 2f,
-                        Timer = 0f
+                        Timer = 0.15f
                     });
-                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, true);
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
                     EntityManager.SetComponentData(WeaponEntity, new SausageSlingshotProperties
                     {
                         BaseHitPoints = 20,

@@ -45,7 +45,7 @@ namespace TMG.LD53
             var directionToTarget = math.normalizesafe(targetPosition - transform.Position);
             transform.Position += directionToTarget * moveSpeed.Value * DeltaTime;
 
-            if (math.distancesq(targetPosition, transform.Position) <= 0.0001f)
+            if (math.distancesq(targetPosition, transform.Position) <= 0.001f)
             {
                 ECB.AppendToBuffer(sortKey, target.Value,
                     new ExperienceBufferElement { Value = experiencePointValue.Value });

@@ -8,7 +8,7 @@ namespace TMG.LD53
         public int Level { get; private set; }
         protected EntityManager EntityManager;
         protected Entity WeaponEntity;
-        protected CapabilityPrefabs PrefabContainer;
+        //protected CapabilityPrefabs PrefabContainer;
 
         private bool _hasContainer;
         private EntityQuery _prefabEntityQuery;
@@ -36,11 +36,11 @@ namespace TMG.LD53
             Level++;
         }
 
-        protected bool CheckPrefabContainer()
+        /*protected bool CheckPrefabContainer()
         {
             if (_hasContainer) return true;
             _hasContainer = _prefabEntityQuery.TryGetSingleton(out PrefabContainer);
             return _hasContainer;
-        }
+        }*/
     }
 }

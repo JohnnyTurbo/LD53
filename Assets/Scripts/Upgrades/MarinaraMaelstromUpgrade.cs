@@ -1,4 +1,5 @@
 ﻿using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
@@ -8,7 +9,7 @@ namespace TMG.LD53
     {
         public override void UpgradeWeapon()
         {
-            if (!CheckPrefabContainer()) return;
+            //if (!CheckPrefabContainer()) return;
             base.UpgradeWeapon();
 
             switch (Level)
@@ -19,16 +20,14 @@ namespace TMG.LD53
                     EntityManager.AddComponentData(WeaponEntity, new CapabilityTimer
                     {
                         CooldownTime = 2.5f,
-                        Timer = 0f
+                        Timer = 0.15f
                     });
-                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, true);
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
                     EntityManager.AddComponentData(WeaponEntity, new MarinaraMaelstromProperties
                     {
                         BaseHitPoints = 5,
-                        NumberToSpawn = 1,
-                        TimeBetweenSpawns = 0.2f,
-                        NumberSpawned = 0,
-                        Timer = 0f
+                        NumberToSpawn = 3,
+                        SpreadAngle = math.radians(15f),
                     });
                     EntityManager.AddComponentData(WeaponEntity,
                         new EntityRandom { Value = Random.CreateFromIndex(100) });
