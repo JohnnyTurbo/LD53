@@ -29,6 +29,8 @@ namespace TMG.LD53
             _inputActions.Enable();
             _inputActions.GameplayMap.PauseGame.performed += ShowPauseScreen;
 
+            GameTimer.Instance.OnGameWin += ShowWinScreen;
+            
             World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<OnGameOverSystem>().OnGameOver +=
                 ShowGameOverScreen;
             
@@ -41,6 +43,8 @@ namespace TMG.LD53
             _inputActions.Disable();
             _inputActions.GameplayMap.PauseGame.performed -= ShowPauseScreen;
 
+            GameTimer.Instance.OnGameWin -= ShowWinScreen;
+            
             if (World.DefaultGameObjectInjectionWorld == null) return;
             World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<OnGameOverSystem>().OnGameOver -=
                 ShowGameOverScreen;

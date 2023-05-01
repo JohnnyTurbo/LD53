@@ -97,8 +97,8 @@ namespace TMG.LD53
             }
 
             _timerText.gameObject.SetActive(false);
-            Debug.Log("u win");
             OnGameWin?.Invoke();
+            World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<SimulationSystemGroup>().Enabled = false;
         }
     }
 }
