@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2622f4078e954d88bcafd45f089eab8a, type: 3}
   m_Name: CheeseWhip
   m_EditorClassIdentifier: 
-  Name: Cheese Whip
+  Name: Cheese Chaser
   Icon: {fileID: 21300000, guid: 3494dc956dfd7174abc07060940a2848, type: 3}
   Descriptions:
-  - Player whips cheese horizontally. Feeds all creatures it hits
+  - Player whips cheese horizontally. Damages all creatures it hits
   - Increases base attack by 5. Fires a second whip. This is a long description that
     can take up a lot of room and it looks good when I have it take up three lines
     like that if I want to get real crazy with it. Why r u reading this?

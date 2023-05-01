@@ -3,7 +3,8 @@ using Unity.Entities;
 
 namespace TMG.LD53
 {
-    public partial struct InitializePlayerRendererSystem : ISystem
+    [RequireMatchingQueriesForUpdate]
+    public partial struct InitializePlayerRendererSystem : ISystem, ISystemStartStop
     {
         public void OnCreate(ref SystemState state)
         {
@@ -11,14 +12,17 @@ namespace TMG.LD53
         }
 
         [BurstCompile]
-        public void OnUpdate(ref SystemState state)
+        public void OnStartRunning(ref SystemState state)
         {
-            state.Enabled = false;
             var playerRendererEntity = SystemAPI.GetSingletonEntity<PlayerRendererTag>();
             foreach (var playerRenderer in SystemAPI.Query<RefRW<PlayerRenderer>>())
             {
                 playerRenderer.ValueRW.Value = playerRendererEntity;
             }
+        }
+
+        public void OnStopRunning(ref SystemState state)
+        {
         }
     }
 }

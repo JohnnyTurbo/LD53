@@ -11,7 +11,6 @@ namespace TMG.LD53
         private EntityManager _entityManager;
         private Entity _playerEntity;
         private EntityQuery _playerQuery;
-        private bool _hasPlayerEntity;
         
         private void Start()
         {
@@ -28,9 +27,8 @@ namespace TMG.LD53
 
         private bool CheckPlayerEntity()
         {
-            if (_hasPlayerEntity) return true;
-            _hasPlayerEntity = _playerQuery.TryGetSingletonEntity<PlayerTag>(out _playerEntity);
-            return _hasPlayerEntity;
+            return _entityManager.Exists(_playerEntity) ||
+                   _playerQuery.TryGetSingletonEntity<PlayerTag>(out _playerEntity);
         }
     }
 }
