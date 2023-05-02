@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df225a5464224f648a938e7f829788e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectileSpeed: 5
+  ProjectileSpeed: 3.5
 --- !u!114 &740710438068106136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5e25fc10a541298b44f33142c28478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitCount: 1
+  HitCount: 2
 --- !u!114 &8626672886842543535
 MonoBehaviour:
   m_ObjectHideFlags: 0

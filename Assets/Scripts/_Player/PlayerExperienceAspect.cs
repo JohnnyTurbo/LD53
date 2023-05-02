@@ -39,7 +39,7 @@ namespace TMG.LD53
             if (!ShouldLevelUp) return false;
             
             CurrentPlayerExperience -= CurrentLevelExperience;
-            CurrentLevelExperience += 1;
+            CurrentLevelExperience *= 2;
             return true;
 
         }

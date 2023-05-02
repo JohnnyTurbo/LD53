@@ -7,7 +7,6 @@ namespace TMG.LD53
     {
         public override void UpgradeWeapon()
         {
-            // if (!CheckPrefabContainer()) return;
             base.UpgradeWeapon();
 
             switch (Level)
@@ -18,7 +17,7 @@ namespace TMG.LD53
                     
                     EntityManager.AddComponentData(WeaponEntity, new CapabilityTimer
                     {
-                        CooldownTime = 2.5f,
+                        CooldownTime = 2.1f,
                         Timer = 0.15f
                     });
                     EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
@@ -36,7 +35,7 @@ namespace TMG.LD53
                 case 2:
                     EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
                     {
-                        CooldownTime = 2f,
+                        CooldownTime = 1.9f,
                         Timer = 0.15f
                     });
                     EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
@@ -53,7 +52,7 @@ namespace TMG.LD53
                 case 3:
                     EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
                     {
-                        CooldownTime = 2f,
+                        CooldownTime = 1.7f,
                         Timer = 0.15f
                     });
                     EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
@@ -70,7 +69,7 @@ namespace TMG.LD53
                 case 4:
                     EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
                     {
-                        CooldownTime = 2f,
+                        CooldownTime = 1.5f,
                         Timer = 0.15f
                     });
                     EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);

@@ -21,6 +21,8 @@ namespace TMG.LD53
         
         private float _secondsRemaining;
 
+        public float SecondsRemaining => _secondsRemaining;
+        
         private bool _isGamePaused;
         private DeliveryGuyInputActions _inputActions;
         private Coroutine _gameTimeRoutine;

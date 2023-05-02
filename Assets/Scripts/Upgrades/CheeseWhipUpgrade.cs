@@ -7,7 +7,6 @@ namespace TMG.LD53
     {
         public override void UpgradeWeapon()
         {
-            //if (!CheckPrefabContainer()) return;
             base.UpgradeWeapon();
             
             switch (Level)
@@ -49,11 +48,37 @@ namespace TMG.LD53
                     break;
                 
                 case 3:
-                    
+                    EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
+                    {
+                        CooldownTime = 1.5f,
+                        Timer = 0.1f
+                    });
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
+                    EntityManager.SetComponentData(WeaponEntity, new CheeseWhipProperties
+                    {
+                        BaseHitPoints = 10,
+                        NumberToSpawn = 3,
+                        TimeBetweenSpawns = 0.2f,
+                        NumberSpawned = 0,
+                        Timer = 0f
+                    });
                     break;
                 
                 case 4:
-                    
+                    EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
+                    {
+                        CooldownTime = 1f,
+                        Timer = 0.1f
+                    });
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
+                    EntityManager.SetComponentData(WeaponEntity, new CheeseWhipProperties
+                    {
+                        BaseHitPoints = 10,
+                        NumberToSpawn = 4,
+                        TimeBetweenSpawns = 0.2f,
+                        NumberSpawned = 0,
+                        Timer = 0f
+                    });
                     break;
                 
                 default:

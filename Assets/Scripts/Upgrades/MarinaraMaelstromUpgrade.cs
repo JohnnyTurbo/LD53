@@ -9,24 +9,23 @@ namespace TMG.LD53
     {
         public override void UpgradeWeapon()
         {
-            //if (!CheckPrefabContainer()) return;
             base.UpgradeWeapon();
 
             switch (Level)
             {
                 case 1:
                     WeaponEntity = EntityManager.CreateEntity(ComponentType.ReadOnly<PerformCapabilityTag>());
-                    EntityManager.SetName(WeaponEntity, "SausageSlingshotProperties");
+                    EntityManager.SetName(WeaponEntity, "MarinaraMaelstromProperties");
                     EntityManager.AddComponentData(WeaponEntity, new CapabilityTimer
                     {
-                        CooldownTime = 2.5f,
+                        CooldownTime = 8f,
                         Timer = 0.15f
                     });
                     EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
                     EntityManager.AddComponentData(WeaponEntity, new MarinaraMaelstromProperties
                     {
                         BaseHitPoints = 5,
-                        NumberToSpawn = 3,
+                        NumberToSpawn = 1,
                         SpreadAngle = math.radians(15f),
                     });
                     EntityManager.AddComponentData(WeaponEntity,
@@ -34,15 +33,48 @@ namespace TMG.LD53
                     break;
                 
                 case 2:
-
+                    EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
+                    {
+                        CooldownTime = 7f,
+                        Timer = 0.1f
+                    });
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
+                    EntityManager.SetComponentData(WeaponEntity, new MarinaraMaelstromProperties
+                    {
+                        BaseHitPoints = 5,
+                        NumberToSpawn = 2,
+                        SpreadAngle = math.radians(15f),
+                    });
                     break;
                 
                 case 3:
-
+                    EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
+                    {
+                        CooldownTime = 6f,
+                        Timer = 0.1f
+                    });
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
+                    EntityManager.SetComponentData(WeaponEntity, new MarinaraMaelstromProperties
+                    {
+                        BaseHitPoints = 5,
+                        NumberToSpawn = 3,
+                        SpreadAngle = math.radians(15f),
+                    });
                     break;
                 
                 case 4:
-
+                    EntityManager.SetComponentData(WeaponEntity, new CapabilityTimer
+                    {
+                        CooldownTime = 5f,
+                        Timer = 0.1f
+                    });
+                    EntityManager.SetComponentEnabled<PerformCapabilityTag>(WeaponEntity, false);
+                    EntityManager.SetComponentData(WeaponEntity, new MarinaraMaelstromProperties
+                    {
+                        BaseHitPoints = 5,
+                        NumberToSpawn = 4,
+                        SpreadAngle = math.radians(15f),
+                    });
                     break;
                 
                 default:
