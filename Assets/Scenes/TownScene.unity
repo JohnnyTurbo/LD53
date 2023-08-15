@@ -4011,6 +4011,8 @@ MonoBehaviour:
   _townScene: {fileID: 1963238451}
   _expSlider: {fileID: 701655552}
   _resumeButtonGO: {fileID: 1442873258}
+  _playAgainLoseButton: {fileID: 19491834}
+  _playAgainWinButton: {fileID: 1005357907}
 --- !u!1 &1030239968
 GameObject:
   m_ObjectHideFlags: 0

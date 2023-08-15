@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace TMG.LD53
 {
@@ -16,6 +17,8 @@ namespace TMG.LD53
         [SerializeField] private SubScene _townScene;
         [SerializeField] private GameObject _expSlider;
         [SerializeField] private GameObject _resumeButtonGO;
+        [SerializeField] private GameObject _playAgainLoseButton;
+        [SerializeField] private GameObject _playAgainWinButton;
         
         private EntityQuery _spawnedQuery;
 
@@ -80,11 +83,13 @@ namespace TMG.LD53
         {
             _gameOverScreen.SetActive(true);
             _expSlider.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(_playAgainLoseButton);
         }
 
         private void ShowWinScreen()
         {
             _winScreen.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(_playAgainWinButton);
         }
 
         public void OnButtonPlayAgain()
