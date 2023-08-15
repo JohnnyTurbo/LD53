@@ -2,6 +2,7 @@
 using Unity.Entities;
 using Unity.Scenes;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,7 @@ namespace TMG.LD53
         [SerializeField] private GameObject _pauseScreen;
         [SerializeField] private SubScene _townScene;
         [SerializeField] private GameObject _expSlider;
+        [SerializeField] private GameObject _resumeButtonGO;
         
         private EntityQuery _spawnedQuery;
 
@@ -56,6 +58,7 @@ namespace TMG.LD53
         private void ShowPauseScreen(InputAction.CallbackContext obj)
         {
             _pauseScreen.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(_resumeButtonGO);
             World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<SimulationSystemGroup>().Enabled = false;
         }
 

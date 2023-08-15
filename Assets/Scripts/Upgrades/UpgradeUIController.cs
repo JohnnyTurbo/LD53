@@ -2,6 +2,7 @@
 using TMPro;
 using Unity.Entities;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace TMG.LD53
@@ -37,6 +38,7 @@ namespace TMG.LD53
             {
                 SetUpgradeButton(_upgradeButtons[i], _upgradeElements[i]);
             }
+            EventSystem.current.SetSelectedGameObject(_upgradeButtons[0]);
         }
 
         private void SetUpgradeButton(GameObject buttonGO, UpgradeElement upgradeElement)

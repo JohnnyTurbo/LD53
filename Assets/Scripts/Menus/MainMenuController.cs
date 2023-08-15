@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace TMG.LD53
@@ -14,10 +16,12 @@ namespace TMG.LD53
         [SerializeField] private Button _lpButton;
         
         [SerializeField] private GameObject _aboutScreen;
+        [FormerlySerializedAs("_aboutPanel")] [SerializeField] private GameObject _optionsPanel;
         
         private void OnEnable()
         {
             _playButton.onClick.AddListener(PlayGame);
+            EventSystem.current.SetSelectedGameObject(_playButton.gameObject);
             _aboutButton.onClick.AddListener(() => ToggleAboutScreen(true));
             _closeAboutButton.onClick.AddListener(() => ToggleAboutScreen(false));
             _tmgButton.onClick.AddListener(LaunchTurboYT);
@@ -46,6 +50,9 @@ namespace TMG.LD53
         private void ToggleAboutScreen(bool shouldShow)
         {
             _aboutScreen.SetActive(shouldShow);
+            _optionsPanel.SetActive(!shouldShow);
+            var selectedObject = shouldShow ? _closeAboutButton.gameObject : _playButton.gameObject;
+            EventSystem.current.SetSelectedGameObject(selectedObject);
         }
 
         private void LaunchTurboYT()
