@@ -1,5 +1,4 @@
-﻿using Unity.Collections;
-using Unity.Entities;
+﻿using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
@@ -33,15 +32,14 @@ namespace TMG.LD53
             var playerPos = SystemAPI.GetComponent<LocalTransform>(_playerEntity).Position;
             if (GameTimer.Instance.SecondsRemaining <= _nextSpawnTime)
             {
-                var ecb = new EntityCommandBuffer(Allocator.Temp);
-                SpawnNextWave(playerPos, ecb);
-                ecb.Playback(EntityManager);
-                ecb.Dispose();
+                var ecbSingleton = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
+                var ecb = ecbSingleton.CreateCommandBuffer(World.Unmanaged);
+                SpawnNextWave(playerPos, ref ecb);
                 _nextSpawnTime = GameTimer.Instance.SecondsRemaining - SPAWN_INTERVAL;
             }
         }
 
-        private void SpawnNextWave(float3 playerPos, EntityCommandBuffer ecb)
+        private void SpawnNextWave(float3 playerPos, ref EntityCommandBuffer ecb)
         {
             var nextWave = EnemyWaveController.Instance.GetNextWave();
 
